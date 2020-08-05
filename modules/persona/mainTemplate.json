@@ -1,0 +1,328 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "base_name": {
+      "type": "string",
+      "metadata": {
+        "description": "Base name of new resources. Must be <= 9 characters."
+      }
+    },
+    "count_index": {
+      "type": "string",
+      "metadata": {
+        "description": "Terraform count index of the resource"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Resource Location."
+      }
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_B2ms",
+      "metadata": {
+        "description": "Virtual Machine Size."
+      }
+    },
+    "vmName": {
+      "type": "string",
+      "defaultValue": "[concat(parameters('base_name'), '-swin')]",
+      "metadata": {
+        "description": "Name of the Workstation"
+      }
+    },
+    "adminName": {
+      "type": "string",
+      "metadata": {
+        "description": "Virtual Machine User Name ."
+      }
+    },
+    "adminPass": {
+      "type":"securestring",
+      "metadata": {
+        "type": "password",
+        "description": "Admin password."
+      }
+    },
+    "subnetID": {
+      "type": "string",
+      "metadata": {
+        "description": "ID of the workstation subnet"
+      }
+    },
+    "nsgID": {
+      "type": "string",
+      "metadata": {
+        "description": "ID of the network security group that is linked to the workstation subnet"
+      }
+    },
+    "publicIpRGName": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().name]",
+      "metadata": {
+        "description": "Public IP Resource Group"
+      }
+    },
+    "ad_service_account_password": {
+    "type": "string",
+      "metadata": {
+        "description": "Active Directory Service Account password"
+      }
+    },
+    "ad_service_account_username": {
+    "type": "string",
+      "metadata": {
+        "description": "Active Directory Service Account username"
+      }
+    },
+    "domain_name": {
+    "type": "string",
+      "metadata": {
+        "description": "Name of the domain to join"
+      }
+    },
+    "application_id": {
+    "type": "string",
+    "defaultValue": "",
+      "metadata": {
+        "description": "The application (client) ID of your app registration in AAD"
+      }
+    },
+    "aad_client_secret": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The client secret of your app registration in AAD"
+      }
+    },
+    "tenant_id": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The directory (tenant) ID of your app registration in AAD"
+      }
+    },
+    "pcoip_secret_id": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The secret identifier in your azure key vault, follow this format https://<keyvault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>"
+      }
+    },
+    "ad_pass_secret_id": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The secret identifier in your azure key vault, follow this format https://<keyvault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>"
+      }
+    },
+    "storage_account": {
+      "type": "string",
+      "metadata": {
+        "description": "Storage account of file share"
+      }
+    },
+    "storage_container": {
+      "type": "string",
+      "metadata": {
+        "description": "Storage container of file share"
+      }
+    },
+    "storage_access_key": {
+      "type": "string",
+      "metadata": {
+        "description": "Storage access key for access to file share"
+      }
+    },
+    "diagnostic_storage_url": {
+      "type": "string",
+      "metadata": {
+        "description": "Diagnostic storage url"
+      }
+    },
+    "TeradiciRegKey": {
+      "type": "securestring",
+      "metadata": { "description": "Teradici temporary Registration Key" }
+    },
+    "_artifactsLocation": {
+      "type": "string",
+      "metadata": {
+          "description": "The base URI where artifacts required by this template are located including a trailing '/'"
+      },
+      "defaultValue": "[deployment().properties.templateLink.uri]"
+    },
+    "_artifactsLocationSasToken": {
+        "type": "securestring",
+        "metadata": {
+            "description": "The sasToken required to access _artifactsLocation."
+        },
+        "defaultValue": ""
+    },
+    "image_id": {
+      "type": "string",
+      "metadata": {
+        "description": "Id of the image in shared image gallery."
+      }
+    },
+    "pcoip_agent_exe": {
+      "type": "string",
+      "metadata": {
+          "description": "Name of the PCOIP executable"
+      },
+      "defaultValue": ""
+    },
+    "vmTags": {
+      "type": "string"
+    }
+},
+ 
+"variables": {
+  "imageName": "[concat(parameters('base_name'),'img')]",
+  "vmName": "[parameters('vmName')]",
+  "location": "[parameters('location')]",
+  "vmSize": "[parameters('vmSize')]",
+  "VMDiskType": "StandardSSD_LRS",
+
+  "ipconfName": "[concat(variables('vmName'),'-ipconf')]",
+
+  "SubNetID": "[parameters('SubNetID')]",
+
+  "nicName": "[concat('nic-', parameters('count_index'), '-', variables('vmName'))]",
+  "nicId": "[resourceId(parameters('publicIpRGName'), 'Microsoft.Network/networkInterfaces',variables('nicName'))]",
+
+  "ExtName": "[concat(variables('vmName'),'/CustomExtV0.1')]",
+  "nsgId": "[parameters('nsgID')]",
+
+  "WallPaperJPG": "img0.jpg",
+  "Script2Run": "DeployPCoIPAgent.ps1",
+  "WallPaperPath": "[concat(parameters('_artifactsLocation'), variables('WallPaperJPG'), parameters('_artifactsLocationSasToken'))]",
+  "PCoIPAgentPath": "[concat('https://downloads.teradici.com/win/stable/', parameters('pcoip_agent_exe'))]",
+  "Sript2RunUri" :"[ uri(parameters('_artifactsLocation'),concat(variables('Script2Run'), parameters('_artifactsLocationSasToken')))]",
+
+  "ScriptParams":  "[concat(' ', parameters('storage_account'), ' ', parameters('storage_container'), ' ', parameters('storage_access_key'), ' ', parameters('TeradiciRegKey'),' ' ,variables('PCoIPAgentPath') ,' ', parameters('pcoip_agent_exe'),' ', variables('WallPaperPath'),' ', parameters('domain_name'),' ', parameters('ad_service_account_username'),' ', parameters('ad_service_account_password'),' ', parameters('application_id'),' ', parameters('tenant_id'),' ', parameters('aad_client_secret'),' ', parameters('pcoip_secret_id'), ' ', parameters('ad_pass_secret_id'))]",
+  "cmdToExecute":  "[concat('powershell.exe -ExecutionPolicy Unrestricted -File ',variables('Script2Run'),  variables('ScriptParams'))]"
+},
+"resources": [
+  { 
+    "type": "Microsoft.Resources/deployments",
+    "apiVersion": "2019-05-01",
+    "name": "[concat(variables('vmName'), '-', variables('vmSize'))]",
+    "properties": {
+        "mode": "Incremental",
+        "template": {
+            "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+            "contentVersion": "1.0.0.0",
+            "resources": []
+        }
+    }
+  }, 
+  {
+    "type": "Microsoft.Network/networkInterfaces",
+    "name": "[variables('nicName')]",
+    "apiVersion": "2019-04-01",
+    "location": "[variables('location')]",
+    "properties": {
+      "ipConfigurations": [
+        {
+          "name": "[variables('ipconfName')]",
+          "properties": {
+            "privateIPAllocationMethod": "Dynamic",
+            "subnet": {
+              "id": "[variables('SubNetID')]"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "Microsoft.Compute/virtualMachines",
+    "name": "[variables('vmName')]",
+    "apiVersion": "2019-03-01",
+    "location": "[variables('location')]",
+    "tags": "[base64ToJson(base64(parameters('vmTags')))]",
+    "dependsOn": [
+      "[variables('nicId')]"
+    ],
+    "properties": {
+      "hardwareProfile": {
+        "vmSize": "[variables('vmSize')]"
+      },
+      "storageProfile": {
+        "imageReference": {
+          "id": "[parameters('image_id')]"
+        },
+        "osDisk": {
+          "createOption":"FromImage",
+          "managedDisk": {
+            "storageAccountType": "[variables('VMDiskType')]"
+          }
+        },
+        "dataDisks": [
+          {
+            "name": "[concat(variables('vmName'), '-SSD-E3-disk2')]",
+            "diskSizeGB": 16,
+            "lun": 0,
+            "createOption": "FromImage",
+            "managedDisk": {
+              "storageAccountType": "[variables('VMDiskType')]"
+            }
+          }
+        ]
+      },
+      "osProfile": {
+        "computerName": "[variables('vmName')]",
+        "adminUsername": "[parameters('adminName')]",
+        "adminPassword": "[parameters('adminPass')]"
+      },
+      "networkProfile": {
+        "networkInterfaces": [
+          {
+            "id": "[variables('nicId')]"
+          }
+        ]
+      },
+      "diagnosticsProfile": {
+        "bootDiagnostics": {
+          "enabled": true,
+          "storageUri": "[parameters('diagnostic_storage_url')]"
+        }
+      }
+    }
+  },
+  {
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "[variables('ExtName')]",
+    "apiVersion": "2018-06-01",
+    "location": "[variables('location')]",
+    "dependsOn": [
+      "[variables('vmName')]"
+    ],
+    "properties": {
+      "publisher": "Microsoft.Compute",
+      "type": "CustomScriptExtension",
+      "typeHandlerVersion": "1.9",
+      "autoUpgradeMinorVersion": true,
+      "settings": {
+        "fileUris": [
+              "[uri(parameters('_artifactsLocation'), concat(variables('Script2Run'), parameters('_artifactsLocationSasToken')))]",
+              "[variables('Sript2RunUri')]"
+          ]
+      },
+      "protectedSettings": {
+        "commandToExecute": "[ variables('cmdToExecute')]"
+      }
+    }
+  }
+],
+"outputs": {
+  "private-ip":{
+    "value": "[reference(resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))).ipConfigurations[0].properties.privateIPAddress]",
+    "type": "string"
+  }
+}
+}

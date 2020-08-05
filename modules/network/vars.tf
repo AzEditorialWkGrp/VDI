@@ -1,0 +1,13 @@
+variable "resource_group_name" {}
+variable "location" {}
+variable "base_name" {}
+variable "deployment_index" {}
+variable "dc_subnet_cidr" {}
+variable "cac_subnet_cidr" {}
+variable "ws_subnet_cidr" {}
+variable "dc_virtual_machine_name" {}
+variable "cac_virtual_machine_name" {}
+variable "dc_private_ip" {}
+variable "cac_private_ip" {}
+variable "active_directory_netbios_name" {}
+variable "allowed_client_cidrs" {}

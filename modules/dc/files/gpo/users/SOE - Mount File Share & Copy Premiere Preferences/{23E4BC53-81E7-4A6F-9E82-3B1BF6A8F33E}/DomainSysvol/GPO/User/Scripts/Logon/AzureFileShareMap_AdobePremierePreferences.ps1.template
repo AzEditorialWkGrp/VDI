@@ -1,0 +1,20 @@
+﻿$storage_name = "${fs_storage_name}"
+$container = "${fs_container_name}"
+$account_name = "${fs_account_name}"
+$storage_password = "${fs_storage_password}"
+​
+$connectTestResult = Test-NetConnection -ComputerName $storage_name.file.core.windows.net -Port 445
+if ($connectTestResult.TcpTestSucceeded) {
+    # Save the password so the drive will persist on reboot
+    cmd.exe /C "cmdkey /add:$storage_name.file.core.windows.net /user:Azure\$account_name /pass:$storage_password"
+    # Mount the drive
+    New-PSDrive -Name Z -PSProvider FileSystem -Scope Global -Root "\\$storage_name.file.core.windows.net\$container" -Persist
+} else {
+    Write-Error -Message "Unable to reach the Azure storage account via port 445. Check to make sure your organization or ISP is not blocking port 445, or use Azure P2S VPN, Azure S2S VPN, or Express Route to tunnel SMB traffic over a different port."
+}
+
+# Delay to allow for mount
+Start-Sleep -s 10
+
+# Copy the Premiere preferences if they don't exist
+robocopy "Z:\03_SP_SYSTEMS\Project_Folders_Template\Profile-template\Profile-template" "C:\Users\$($env:USERNAME)\Documents\Adobe\Premiere Pro\14.0\Profile-$($env:USERNAME)" /E /XC /XN /XO /R:1 /W:1

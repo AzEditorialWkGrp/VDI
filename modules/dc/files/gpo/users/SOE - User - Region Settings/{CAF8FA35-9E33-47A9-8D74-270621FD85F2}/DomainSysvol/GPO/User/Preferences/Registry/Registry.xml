@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RegistrySettings clsid="{A3CCFC41-DFDB-43a5-8D26-0FE8B954DA51}"><Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="PreferredUILanguages" status="PreferredUILanguages" image="6" changed="2020-06-02 09:53:59" uid="{5A3C1EA0-2CE3-48EA-81D0-7E1B48A1D29B}" bypassErrors="1"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_CURRENT_USER" key="Control Panel\Desktop" name="PreferredUILanguages" type="REG_MULTI_SZ" value="en-GB"><Values><Value>en-GB</Value></Values></Properties><Filters><FilterRunOnce hidden="1" not="0" bool="AND" id="{5DC1BBA3-2046-4CC7-8C77-EFDAD827F0B1}"/>
+		</Filters></Registry>
+	<Registry clsid="{9CD4B2F4-923D-47f5-A062-E897DD1DAD50}" name="PreferredUILanguagesPending" status="PreferredUILanguagesPending" image="6" bypassErrors="1" changed="2020-06-02 09:55:07" uid="{AB660D1B-793C-4270-B990-38A315861E7D}"><Properties action="R" displayDecimal="1" default="0" hive="HKEY_CURRENT_USER" key="Control Panel\Desktop" name="PreferredUILanguagesPending" type="REG_MULTI_SZ" value="en-GB"><Values><Value>en-GB</Value></Values></Properties><Filters><FilterRunOnce hidden="1" not="0" bool="AND" id="{B37BFCE4-63C2-4F98-8D76-B9CAAC49DEDE}"/>
+		</Filters></Registry>
+</RegistrySettings>

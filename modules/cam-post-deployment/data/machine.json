@@ -1,0 +1,10 @@
+{
+    "machineName": "${machine_name}",
+    "hostName": "${machine_name}",
+    "deploymentId": "${cam_deployment_id}",
+    "connectorId": "${cam_connector_id}",
+    "managed": true,
+    "provider": "azure",
+    "subscriptionId": "${azure_subscription_id}",
+    "resourceGroup": "${azure_resource_group}"
+}

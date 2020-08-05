@@ -1,0 +1,4 @@
+{
+    "connectorName": "${connector_name}",
+    "deploymentId": "${deployment_id}"
+}

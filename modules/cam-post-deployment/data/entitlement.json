@@ -1,0 +1,4 @@
+{
+    "machineId": "${machine_id}",
+    "userGuid": "${user_guid}"
+}
