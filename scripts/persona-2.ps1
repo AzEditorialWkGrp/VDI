@@ -167,7 +167,8 @@ diag_storage_name        = `"vdidemo`"
 ad_admin_username        = `"ADadmin`"
 cac_admin_username          = `"CACadmin`"
 windows_std_admin_username  = `"WINadmin`"
-vm_persona                  = 2"
+vm_persona                  = 2
+client_name                 = `"Client`""
 
 DownloadProject
 
