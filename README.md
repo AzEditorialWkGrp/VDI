@@ -88,11 +88,11 @@ The script will utilise the Azure CLI to authenticate you to your subscription. 
 
 You have the choice of 3 scripts depending on which Persona you choose the relevent resources will be deployed. You can see what will be deployed for each persona in [PersonaDetails.md](https://github.com/AzEditorialWkGrp/VDI/blob/master/PeronaDetails.md)
 
-Persona1 - https://github.com/SupportPartners/microsoft-vdi/raw/master/scripts/persona-1.ps1
+Persona1 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-1.ps1
 
-Persona2 - https://github.com/SupportPartners/microsoft-vdi/raw/master/scripts/persona-2.ps1
+Persona2 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-2.ps1
 
-Persona3 - https://github.com/SupportPartners/microsoft-vdi/raw/master/scripts/persona-3.ps1
+Persona3 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-3.ps1
 
 Copy the script to C:\temp to avoid character limits
 
@@ -119,7 +119,7 @@ Once authenticated you will be asked which subscription you wish to deploy.
 
 `CAM PCOIP Registration code:`
 
-**You’ll be prompted for the CAM Service account credentials gathered in the [CAM pre-requisite](https://github.com/SupportPartners/microsoft-vdi#prerequisites)**
+**You’ll be prompted for the CAM Service account credentials gathered in the [CAM pre-requisite](https://github.com/AzEditorialWkGrp/VDI#prerequisites)**
 
 * Enter the **username** and hit return
 * Enter the **API Key** and hit return
@@ -160,7 +160,7 @@ Password for the Adminstrator user
 ```
 
 
-**Enter the Access Key for the Storage Account - please see: [Pre-requisites: Storage Account Key](https://github.com/SupportPartners/microsoft-vdi#prerequisites).**
+**Enter the Access Key for the Storage Account - please see: [Pre-requisites: Storage Account Key](https://github.com/AzEditorialWkGrp/VDI#prerequisites).**
 
 
 ```
