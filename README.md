@@ -78,7 +78,11 @@ Create the CAM service account
 ## Deployment
 
 **Ensure internet explorer has been run at least once and the initial setup prompt has been actioned on the machine the Deploy script is run from.**
-* Ensure Powershell execution polices have been set to allow the script the run [https:/go.microsoft.com/fwlink/?LinkID=135170](https://go.microsoft.com/fwlink/?LinkID=135170). Example:  *Set-ExecutionPolicy -ExecutionPolicy Unrestricted*
+If Internet Explorer has not been run once on the machine you run the script on, you will encounter errors in the deployment process.
+
+**Ensure Powershell execution polices have been set to allow the script the run** [https:/go.microsoft.com/fwlink/?LinkID=135170](https://go.microsoft.com/fwlink/?LinkID=135170). 
+
+Example:  *Set-ExecutionPolicy -ExecutionPolicy Unrestricted*
 
 **Install Azure CLI on the machine used to run the deployment script**
 
@@ -86,7 +90,9 @@ The script will utilise the Azure CLI to authenticate you to your subscription. 
 
 **Download the deployment script**
 
-You have the choice of 3 scripts depending on which Persona you choose the relevent resources will be deployed. You can see what will be deployed for each persona in [PersonaDetails.md](https://github.com/AzEditorialWkGrp/VDI/blob/master/PeronaDetails.md)
+You have the choice of 3 scripts depending on which Persona you choose the relevent resources will be deployed. You can see what will be deployed for each persona in [PersonaDetails.md](https://github.com/SupportPartners/microsoft-vdi/blob/master/PeronaDetails.md)
+
+Right click on the desired persona link below and choose 'Save Link As'
 
 Persona1 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-1.ps1
 
@@ -94,13 +100,17 @@ Persona2 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-2.
 
 Persona3 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-3.ps1
 
-Copy the script to C:\temp to avoid character limits
+Copy the script to **C:\temp** to avoid character limits
 
 NOTE: This script cannot be situated too deep within subfolders else the script will error flagging a 248 character limit
 
 **Run the script from a Powershell run as current logged in user**
 
-`C:\path\to\deploy.ps1`
+Persona1 - `C:\temp\persona-1.ps1`
+
+Persona2 - `C:\temp\persona-2.ps1`
+
+Persona3 - `C:\temp\persona-3.ps1`
 
 Resources for the deployment will be downloaded from GitHub into the current working directory.
 This includes Teraform and the dependancies required for deployment.
@@ -119,7 +129,7 @@ Once authenticated you will be asked which subscription you wish to deploy.
 
 `CAM PCOIP Registration code:`
 
-**You’ll be prompted for the CAM Service account credentials gathered in the [CAM pre-requisite](https://github.com/AzEditorialWkGrp/VDI#prerequisites)**
+**You’ll be prompted for the CAM Service account credentials gathered in the [CAM pre-requisite](https://github.com/SupportPartners/microsoft-vdi#prerequisites)**
 
 * Enter the **username** and hit return
 * Enter the **API Key** and hit return
@@ -181,17 +191,6 @@ var.cac_admin_password
 
   Enter a value:<password>
 ```
-
-**Enter Client name for tags**
-
-This will set the tags in your Azure subscription, it is recommended the client uses their organisation name. Tag names can’t contain the following characters: **<, >, %, &, \, ?, /**
-
-```
-var.client_name
-  Client name for tags. User entry
-
-  Enter a value:
-  ```
 
 **Enter the Azure Region where you would like to deploy the resources**
 
