@@ -86,7 +86,7 @@ Function DownloadTerraformPlugins([string] $directory)
 
 Function DownloadTools([string] $directory)
 {
-    $vdiwatcheruri = "https://stmsoftdemostoreprod.blob.core.windows.net/tools/VdiVhdWatcher-windows-amd64-1.0.exe"
+    $vdiwatcheruri = "https://stmsoftdemostoreprodusa.blob.core.windows.net/tools/VdiVhdWatcher-windows-amd64-1.0.exe"
     $vdiwatcherpath = Join-Path $directory "VdiVhdWatcher.exe"
     $wc.DownloadFile($vdiwatcheruri, $vdiwatcherpath)
 }
