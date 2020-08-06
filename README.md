@@ -2,11 +2,15 @@
 
 Click to deploy Azure environment with guidance, designed to provide Adobe Creative Cloud Desktops in a client's existing or new Microsoft Azure subscription. Using a set of custom tools clients will be able to deploy a customisable Creative Desktops in Azure Infrastructure for up to five users in a single region with shared storage. This provides a client with a minimal commitment but viable solution for testing or small-scale use.
 
+---
+
 ## Getting Started
 
 These instructions will help you deploy an Adobe Creative Cloud desktop infrastructure environments within Azure.  By providing a simple repeatable approach, teams can deliver Creative Cloud desktop infrastructure quickly and efficiently, tailored to defined personas in the creative industry.
 
-The deployment process will deploy end user workstations up to a maximum of 5 based upon how many users are specified during this process.
+The deployment process will deliver end user workstations up to a maximum of 5 (based upon how many users are specified during this process).
+
+The specification of the deployed infrastructure is based on extensive testing, to simplfy this a number of personas have been defined.
 
 |Persona Name	|Persona	|Resolution	|Codecs	|Estimated disk bandwidth required per simultaneous user	|Azure Instance type	|Azure File Storage	|
 |---	|---	|---	|---	|---	|---	|---	|
@@ -24,9 +28,9 @@ For more details refer to: [Persona Details](https://github.com/AzEditorialWkGrp
 |NVv3-series (Persona 2 or 3)	|No	|Yes	|Expected Q3 2020	|No	|Yes	|No	|Yes	|Yes	|Yes	|Yes	|Yes	|No	|Expected Q4 2020	|No	|
 
 
-## What does this Deploy
+## Deliverables
 
-Using a number of scripts this will deploy the following infrastructure in a self contained Azure Resource Group in your own Azure subscription depending on the options you choose during deployment:
+The script will deploy the following infrastructure in a self contained Azure Resource Group within your Azure subscription:
 
 * Teradici Cloud Access Connector
 * Connection to Teradici Cloud Access Manager
@@ -36,21 +40,19 @@ Using a number of scripts this will deploy the following infrastructure in a sel
 * An Azure Standard or Premium File Share up to 20TB in size
 * Demo projects and media on the Azure File Share ready for testing
 
-## Prerequisites
+## Prerequisites before deploying
 
-There are a number of prerequisites you must have to successfully deploy this infrastructure.
+There are a number of prerequisites you must have to successfully deploy this infrastructure
 
 **Pre-requisites:. Teradici CAM License (PCoIP registration code)**
 
-* In order to proceed with the deployment a valid Teradici subscription should be active.
-* If you require to purchase a subscription visit their website here (link).
-* Teradici will provide a registration code which will be utilised in the deployment, ensure you have this to hand
+* A valid Teradici subscription should be active
+* If you require to purchase a subscription or require a demo license visit their website here https://connect.teradici.com/contact-us
+* Teradici will provide a registration code which will be utilised in the deployment
 
 **Pre-requisites: Storage Account Key**
 
-
-* In order to access the demo assets and VM image, the script will request a storage key- this will be provided to you by Microsoft. You will be unable to successfully deploy the demo resources without this key. Please ensure you have this key available prior to deploying the script.
-
+* In order to access the demo assets and VM image, the script will request a storage key- this will be provided to you by Microsoft. You will be unable to successfully deploy the demo resources without this key. Please ensure you have this key available prior to deploying the script
 
 **CAM Pre-requisite:**
 Create the CAM service account
@@ -60,7 +62,7 @@ Create the CAM service account
 * Choose ‘CAM Service Account’ from the drop down selector
 * Click ‘+’
 * Enter a friendly name for the account and click ‘CREATE’
-* Ensure you make a note of the **Username** and the **API key** when presented. You will require this later.
+* Ensure you make a note of the **Username** and the **API key** when presented
 
   **string: Example Only**
 {"keyId":"5f1021ef7240ed006725918b","username":"**5f1021ef7240ed006725918b**","apiKey":"**eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJvaWQiOiI1ZjBjYTcwY2M4NmI1YzAwMTJkYWVjYmQiLCJvd25lck9pJYR6IjE5Zjk5M2NjLTdlYTctNDJkNS1iYTc1LTA5OTY0MWJmYjg3OCIsImp0aSI6Ijk1ZDJmMDhlLWI2YTktNGZiNC05Y2Q5LWZiM2JkZDU5YTYxOSIsImlhdCI6MTU5NDg5Mjc4NSwiZXhwIjoxNjg5NTAwNzg1fQ.1X62a0wha-yq0xeWzkxO3GkLSDa2TRdioWYL1dHMIDNC15dmspIZP7vfFdaq8PmAJnefS_kT6SULPM0—QwPpA**","keyName":"TestDeploy"}
@@ -74,6 +76,7 @@ Create the CAM service account
   **API key: Example Only**
 `eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJvaWQiOiI1ZjBjYTcwY2M4NmI1YzAwMTJkYWVjYmQiLCJvd25lck9pJYR6IjE5Zjk5M2NjLTdlYTctNDJkNS1iYTc1LTA5OTY0MWJmYjg3OCIsImp0aSI6Ijk1ZDJmMDhlLWI2YTktNGZiNC05Y2Q5LWZiM2JkZDU5YTYxOSIsImlhdCI6MTU5NDg5Mjc4NSwiZXhwIjoxNjg5NTAwNzg1fQ.1X62a0wha-yq0xeWzkxO3GkLSDa2TRdioWYL1dHMIDNC15dmspIZP7vfFdaq8PmAJnefS_kT6SULPM0—QwPpA`
 
+---
 
 ## Deployment
 
@@ -90,17 +93,15 @@ The script will utilise the Azure CLI to authenticate you to your subscription. 
 
 **Download the deployment script**
 
-You have the choice of 3 scripts depending on which Persona you choose the relevent resources will be deployed. You can see what will be deployed for each persona in [PersonaDetails.md](https://github.com/SupportPartners/microsoft-vdi/blob/master/PeronaDetails.md)
+Choose a script depending of the persona requried. Details of each persona - [PersonaDetails.md](https://github.com/SupportPartners/microsoft-vdi/blob/master/PeronaDetails.md)
 
-Right click on the desired persona link below and choose 'Save Link As'
+Download script to c:\temp (Right click on the desired persona link below and choose 'Save Link As')
 
 Persona1 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-1.ps1
 
 Persona2 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-2.ps1
 
 Persona3 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-3.ps1
-
-Copy the script to **C:\temp** to avoid character limits
 
 NOTE: This script cannot be situated too deep within subfolders else the script will error flagging a 248 character limit
 
@@ -112,14 +113,14 @@ Persona2 - `C:\temp\persona-2.ps1`
 
 Persona3 - `C:\temp\persona-3.ps1`
 
-Resources for the deployment will be downloaded from GitHub into the current working directory.
+All Templates and code for the deployment will be downloaded from GitHub into the current working directory.
 This includes Teraform and the dependancies required for deployment.
 
 **Authenticate to Azure**
 
-You may be prompted to log into your Microsoft Azure account. If you have authenticated previously you will not be prompted. This should be an account that has the correct permissions to create resources in the destination subscription.
+You may be prompted to log into your Microsoft Azure account. 
 
-Once authenticated you will be asked which subscription you wish to deploy.
+If you have authenticated previously you will not be prompted. This should be an account that has the correct permissions (owner) to create resources in the   destination subscription.
 
 **Type the corresponding number to the desired subscription and hit return.**
 
@@ -240,11 +241,13 @@ var.windows_std_admin_password
 ```
 
 
-You’ll now be asked if you’d like to proceed. From this point on, objects will begin to be created in your Azure subscription in a single Resource Group.
+Proceeding from this point, resources will be created in your Azure subscription in the Resource Group.
 
-By scrolling up the output, the script will indicate the number of resources that will be created as part of the deployment- for example the below excerpt indicates that the deployment will create 65 resources, change 0 resources and destroy (delete) 0 resources- this is typical of a new deployment. 
+Output will list the number of resources that are to be created as part of the deployment
 
-Although the number or resources added will depend on the version of the script run, the number of items listed under ‘change’ or ‘destroy’ in a new deployment will be 0.
+- for example the below excerpt indicates that the deployment will create 65 resources, change 0 resources and destroy (delete) 0 resources- this is typical of a new deployment. 
+
+- Although the number or resources added will depend on the version of the script run, the number of items listed under ‘change’ or ‘destroy’ in a new deployment will be 0.
 
 ![Plan](Images/Plan.png)
 
@@ -260,11 +263,13 @@ Enter a value:` yes`
 ```
 
 
-The deployment process will now begin as the Azure environment is created **(process can take approx 30mins to complete)**
+Terraform deployment process will start  (process can take approx 30mins to complete)
 
-On completion the script will output the following:
+Completion Output:
 
 ![Plan](Images/ApplyComplete.png)
+
+---
 
 ## Errors with resource creation
 
@@ -275,6 +280,8 @@ On completion the script will output the following:
 2. If Internet Explorer has never been run from the workstation you are running the script you will received the following error:
 
 *ERROR: The response content cannot be parsed because the Internet Explorer engine is not available*
+
+---
 
 ## Testing the deployment has been successful
 
@@ -301,6 +308,8 @@ When you click on a workstation it should list the users authorised (assigned) t
 
 By design, there is a one-to-one mapping between users and workstations. For example; if 3 users are requested during the script deployment, 3 machines will be also created, one workstation for each user created. You will be able to review user/ workstation assignments here.
 
+---
+
 ## Connecting to a workstation
 
 **To access via Teradici PCoIP client:**
@@ -314,6 +323,8 @@ By design, there is a one-to-one mapping between users and workstations. For exa
 * It will then ask you for a username and password for the workstation (This will be a user account defined in the deployment process)
 
 **The connection can take up to 5 minutes to initiate depending if the remote workstation is already running or not**
+
+---
 
 ## Connecting to Active Directory
 
@@ -337,6 +348,7 @@ under ‘**Source IP address**’ add the IP ensuring that you separate any addi
 ![Plan](Images/RDP1.png)
 ![Plan](Images/RDP2.png)
 
+---
 
 ## Built With
 
