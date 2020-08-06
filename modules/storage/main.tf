@@ -54,10 +54,10 @@ resource "null_resource" "copy-vm-images" {
   }
 
   provisioner "local-exec" {
-    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.os_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.os_disk_name}"
+    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.os_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.os_disk_name} --timeout 7200"
   }
 
   provisioner "local-exec" {
-    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.data_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.data_disk_name}"
+    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.data_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.data_disk_name}  --timeout 7200"
   }
 }
