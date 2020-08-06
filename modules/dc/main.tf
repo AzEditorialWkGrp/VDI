@@ -44,20 +44,20 @@ data "template_file" "gpo-script" {
   }
 }
 
-# data "template_file" "gpo-templates" {
-#   for_each                 = fileset(path.module, "/files/gpo/**/*.template")
-#   depends_on               = [var.fs_dependancy]
+data "template_file" "gpo-templates" {
+  for_each                 = fileset(path.module, "/files/gpo/**/*.template")
+  depends_on               = [var.fs_dependancy]
 
-#   template                 = file("${path.module}/${each.key}")
-#   vars = {
-#     tf_file_path           = abspath("${path.module}/${each.key}")
+  template                 = file("${path.module}/${each.key}")
+  vars = {
+    tf_file_path           = abspath("${path.module}/${each.key}")
 
-#     fs_storage_name        = var.fs_stroage_account
-#     fs_container_name      = var.fs_stroage_container
-#     fs_account_name        = var.fs_stroage_account
-#     fs_storage_password    = var.fs_stroage_password
-#   }
-# }
+    fs_storage_name        = var.fs_stroage_account
+    fs_container_name      = var.fs_stroage_container
+    fs_account_name        = var.fs_stroage_account
+    fs_storage_password    = var.fs_stroage_password
+  }
+}
 
 resource "azurerm_windows_virtual_machine" "domain-controller" {
   depends_on          = [var.dependency]
@@ -142,15 +142,15 @@ resource "null_resource" "upload-scripts" {
   }
 }
 
-# resource "local_file" "gpo-templates-process" {
-#     for_each    = data.template_file.gpo-templates
+resource "local_file" "gpo-templates-process" {
+    for_each    = data.template_file.gpo-templates
 
-#     content     = each.value.rendered
-#     filename    = replace(each.value.vars.tf_file_path, ".template", "")
-# }
+    content     = each.value.rendered
+    filename    = replace(each.value.vars.tf_file_path, ".template", "")
+}
 
 data "archive_file" "archive-gpo" {
-  # depends_on = [local_file.gpo-templates-process]
+  depends_on = [local_file.gpo-templates-process]
 
   type        = "zip"
   output_path = "${path.module}/gpo.zip"
