@@ -1,8 +1,8 @@
 # Azure Creative Cloud VDI Infrastructure 
 
-Click to deploy Azure environment with guidance, designed to provide Adobe Creative Cloud Desktops in a client's existing or new Microsoft Azure subscription. Using a set of custom tools clients will be able to deploy a customisable Creative Desktops in Azure Infrastructure for up to five users in a single region with shared storage. This provides a client with a minimal commitment but viable solution for testing or small-scale use.
+Click-to-deploy Terraform templates for the automated deployment of small scale Azure-based creative production proof of concept environments. Spin up 1-5 virtual machines, shared edit storage and networking, tailored to your workflows and requirements in any Azure subscription within 30 minutes. Utilising Teradici PCoIP as the access protocol, users have high-fidelity, colour accurate access to powerful GPU enabled workstations hosting the Adobe Creative Cloud toolset. 
 
----
+The easiest and fastest solution to start your VDI journey on Azure.
 
 ## Getting Started
 
@@ -13,7 +13,7 @@ The deployment process will deliver end user workstations up to a maximum of 5 (
 The specification of the deployed infrastructure is based on extensive testing, to simplfy this a number of personas have been defined.
 
 |Persona Name	|Persona	|Resolution	|Codecs	|Estimated disk bandwidth required per simultaneous user	|Azure Instance type	|Azure File Storage	|
-|---	|---	|---	|---	|---	|---	|---	|
+|------------	|------------------------	|---	|---	|---	|---	|---	|
 |Persona1	|Short Form, Online and Fast Turnaround	|Up to 1080i30 (1920X1080)	|XDCAM-50	|170 Mbps	|Standard_NV6	|Standard	|
 |Persona2	|Long Form, Complex Editing and Graphics	|Up to 1080i60 (1920X1080)	|DNxHD 145 DNxHR SQ or ProRes 422 ProRes HQ     |340 Mbps	|Standard_NV12s_v3	|Premium	|
 |Persona3	|Graphics, Compositing, and Finishing	|Up to 1080i60	|DNxHD 145  DNxHR SQ or ProRes 422 ProRes HQ	|450 Mbps	|Standard_NV24s_v3	|Premium	|
@@ -40,7 +40,7 @@ The script will deploy the following infrastructure in a self contained Azure Re
 * An Azure Standard or Premium File Share up to 20TB in size
 * Demo projects and media on the Azure File Share ready for testing
 
-## Prerequisites before deploying
+## 1 Prerequisites 
 
 There are a number of prerequisites you must have to successfully deploy this infrastructure
 
@@ -55,6 +55,7 @@ There are a number of prerequisites you must have to successfully deploy this in
 * In order to access the demo assets and VM image, the script will request a storage key- this will be provided to you by Microsoft. You will be unable to successfully deploy the demo resources without this key. Please ensure you have this key available prior to deploying the script
 
 **CAM Pre-requisite:**
+
 Create the CAM service account
 
 * Go to [https://cam.teradici.com](https://cam.teradici.com/) and log in
@@ -78,7 +79,7 @@ Create the CAM service account
 
 ---
 
-## Deployment
+## 2 Deployment Setup
 
 **Ensure internet explorer has been run at least once and the initial setup prompt has been actioned on the machine the Deploy script is run from.**
 If Internet Explorer has not been run once on the machine you run the script on, you will encounter errors in the deployment process.
@@ -104,6 +105,8 @@ Persona2 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-2.
 Persona3 - https://github.com/AzEditorialWkGrp/VDI/raw/master/scripts/persona-3.ps1
 
 NOTE: This script cannot be situated too deep within subfolders else the script will error flagging a 248 character limit
+
+## 3 Deployment 
 
 **Run the script from a Powershell run as current logged in user**
 
@@ -269,6 +272,20 @@ Completion Output:
 
 ![Plan](Images/ApplyComplete.png)
 
+## 4 Connecting to a workstation
+
+**To access via Teradici PCoIP client:**
+
+* Download the latest PCoIP software for your operating system here: https://docs.teradici.com/find/product/software-and-mobile-clients
+* Install the application & run on your local machine
+* To set up a new connection to a workstation, click on 'new connection' 
+* Enter in the external IP (You can get the External IP of the connector here https://cam.teradici.com/app/connectors)
+* Enter connection name - This is a friendly name and can be anything the user chooses
+* Hit 'save' and it will then ask you to 'connect insecurely'  click 'ok'
+* It will then ask you for a username and password for the workstation (This will be a user account defined in the deployment process)
+
+**The connection can take up to 5 minutes to initiate depending if the remote workstation is already running or not**
+
 ---
 
 ## Errors with resource creation
@@ -307,22 +324,6 @@ When you click on a workstation it should list the users authorised (assigned) t
 ![Plan](Images/CAC-Workstations.png)
 
 By design, there is a one-to-one mapping between users and workstations. For example; if 3 users are requested during the script deployment, 3 machines will be also created, one workstation for each user created. You will be able to review user/ workstation assignments here.
-
----
-
-## Connecting to a workstation
-
-**To access via Teradici PCoIP client:**
-
-* Download the latest PCoIP software for your operating system here: https://docs.teradici.com/find/product/software-and-mobile-clients
-* Install the application & run on your local machine
-* To set up a new connection to a workstation, click on 'new connection' 
-* Enter in the external IP (You can get the External IP of the connector here https://cam.teradici.com/app/connectors)
-* Enter connection name - This is a friendly name and can be anything the user chooses
-* Hit 'save' and it will then ask you to 'connect insecurely'  click 'ok'
-* It will then ask you for a username and password for the workstation (This will be a user account defined in the deployment process)
-
-**The connection can take up to 5 minutes to initiate depending if the remote workstation is already running or not**
 
 ---
 
