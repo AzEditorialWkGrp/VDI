@@ -2,7 +2,7 @@ variable "resource_group_name" {
   description = "Basename of the Resource Group to deploy the workstation"
 }
 
-variable "deployment_index" {
+variable "index" {
   description = "Number (index) of the deployment"
 }
 

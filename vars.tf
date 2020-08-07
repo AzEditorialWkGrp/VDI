@@ -15,11 +15,11 @@ variable "deployment_index" {
 }
 
 variable "storage_name" {
-  description = "Base name for Standard/Premium storage. Will be prefixed with 'ss'"
+  description = "Base name for Standard/Premium storage, 1-12 characters. Will be prefixed with 'ss'"
 }
 
 variable "diag_storage_name" {
-  description = "Base name for diagnostic storage. Will be prefixed with 'stdiag'"
+  description = "Base name for diagnostic storage, 1-8 characters. Will be prefixed with 'stdiag'"
 }
 
 variable "storage_capacity" {

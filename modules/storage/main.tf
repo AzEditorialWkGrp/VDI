@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "storage-account" {
-  name                     = "ss${var.storage_name}${var.deployment_index}"
+  name                     = "ss${var.storage_name}${var.index}"
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = var.is_premium_storage == true ? "Premium": "Standard"
@@ -19,7 +19,7 @@ resource "azurerm_storage_share" "file-share" {
 }
 
 resource "azurerm_storage_account" "diagnostic-storage-account" {
-  name                     = "stdiag${var.diag_storage_name}${var.deployment_index}"
+  name                     = "stdiag${var.diag_storage_name}${var.index}"
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
@@ -54,10 +54,10 @@ resource "null_resource" "copy-vm-images" {
   }
 
   provisioner "local-exec" {
-    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.os_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.os_disk_name} --timeout 72000"
+    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.os_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.os_disk_name}  --timeout 21600"
   }
 
   provisioner "local-exec" {
-    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.data_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.data_disk_name} --timeout 72000"
+    command = "az storage blob copy start --destination-container ${azurerm_storage_container.vm-images-container.name} --destination-blob ${var.data_disk_name} --account-name ${azurerm_storage_account.diagnostic-storage-account.name} --account-key ${azurerm_storage_account.diagnostic-storage-account.primary_access_key} --source-account-name ${var.assets_storage_account} --source-account-key ${var.assets_storage_account_key} --source-container vdidemoimageprod --source-blob ${var.data_disk_name} --timeout 21600"
   }
 }

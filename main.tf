@@ -19,7 +19,7 @@ module "storage" {
   source = "./modules/storage"
 
   resource_group_name        = azurerm_resource_group.vdi_resource_group.name
-  deployment_index           = var.deployment_index
+  index                      = time_static.date_creation.unix
   location                   = var.common_location
   storage_name               = var.storage_name
   is_premium_storage         = var.vm_persona > 1
