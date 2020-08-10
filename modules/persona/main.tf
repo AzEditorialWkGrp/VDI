@@ -5,16 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-resource "null_resource" "wait-for-images" {
-  depends_on      = [var.vm_depends_on]
-
-  provisioner "local-exec" {
-    command = "VdiVhdWatcher --name ${var.images_storage_account} --container vm-images --access-key ${var.images_container_access_key} --blob ${var.os_disk_name} --blob ${var.data_disk_name}"
-  }
-}
-
 resource "azurerm_image" "workstation" {
-  depends_on      = [var.vm_depends_on, null_resource.wait-for-images]
+  depends_on      = [var.vm_depends_on]
 
   name                = "ARMTemplate-windows-std-image"
   location            = var.azure_region

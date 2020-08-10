@@ -42,6 +42,11 @@ variable "assets_storage_container" {
   type        = string
 }
 
+variable "images_storage_container" {
+  description = "Source storage container for downloading VM images"
+  type        = string
+}
+
 variable "os_disk_name" {
   type = string
 }

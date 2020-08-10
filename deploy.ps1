@@ -1,6 +1,6 @@
-$owner = "SupportPartners"
-$repo_name = "microsoft-vdi"
-$branch = "3.2"
+$owner = "AzEditorialWkGrp"
+$repo_name = "VDI"
+$branch = "master"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $wc = New-Object System.Net.WebClient
@@ -86,9 +86,13 @@ Function DownloadTerraformPlugins([string] $directory)
 
 Function DownloadTools([string] $directory)
 {
-    $vdiwatcheruri = "https://stmsoftdemostoreprodusa.blob.core.windows.net/tools/VdiVhdWatcher-windows-amd64-1.0.exe"
-    $vdiwatcherpath = Join-Path $directory "VdiVhdWatcher.exe"
-    $wc.DownloadFile($vdiwatcheruri, $vdiwatcherpath)
+    $azCopyUri = "https://aka.ms/downloadazcopy-v10-windows"
+    $azCopyDir = New-Item -Name "AzCopy" -Type "Directory" -Force
+    $azCopyZip = Join-Path $azCopyDir "azcopy.zip"
+    $wc.DownloadFile($azCopyUri, $azCopyZip)
+    Expand-Archive -Path $azCopyZip -DestinationPath $azCopyDir -Force
+    Get-ChildItem $azCopyDir/*/azcopy.exe | Move-Item -Destination $directory -Force
+    Remove-Item -Path $azCopyDir -Force -Recurse
 }
 
 Function CreateUsers

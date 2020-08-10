@@ -28,6 +28,7 @@ module "storage" {
   assets_storage_account     = var.assets_storage_account
   assets_storage_account_key = var.assets_storage_account_key
   assets_storage_container   = var.assets_storage_container
+  images_storage_container   = var.images_storage_container
   os_disk_name               = local.workstation_os_disk_name
   data_disk_name             = local.workstation_data_disk_name
   tags                       = local.common_tags

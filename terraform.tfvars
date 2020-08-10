@@ -20,6 +20,7 @@ golden_image_id               = "/subscriptions/c28be9ee-97ed-4251-ab14-43090bbc
 windows_std_hostname          = "windows-std-workstation"
 assets_storage_account        = "stmsoftdemostoreprodusa"
 assets_storage_container      = "demofileshare"
+images_storage_container      = "vdidemoimageprod"
 #_artifactsLocation            = "https://stteradicisa.blob.core.windows.net/teradicisacontainer/"
 _artifactsLocation            = "https://teradicisa.blob.core.windows.net/teradicisacontainer/"
 _artifactsLocationSasToken    = ""

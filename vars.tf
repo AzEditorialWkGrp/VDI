@@ -220,6 +220,11 @@ variable "assets_storage_container" {
   type        = string
 }
 
+variable "images_storage_container" {
+  description = "Source storage container for downloading VM images"
+  type        = string
+}
+
 variable "_artifactsLocation" {
   description = "The base URI where artifacts required by this template are located including a trailing '/'"
 }
