@@ -99,7 +99,7 @@ module "cam-post-deployment" {
   cam_connector_name     = module.cam-pre-requisites.connector_name
   azure_subscription_id  = data.azurerm_subscription.current.subscription_id
   azure_resource_group   = azurerm_resource_group.vdi_resource_group.name
-  vm_name                = local.vm_names[var.vm_persona]
+  vm_name                = "VM${time_static.date_creation.unix}"
   vm_count               = local.vm_count
   workstations           = local.workstations
 }
@@ -148,7 +148,7 @@ module "persona-1" {
   resource_group_name = azurerm_resource_group.vdi_resource_group.name
   azure_region        = azurerm_resource_group.vdi_resource_group.location
 
-  vm_name                     = local.vm_names[1]
+  vm_name                     = "VM${time_static.date_creation.unix}"
   base_name                   = var.base_name
   pcoip_registration_code     = var.pcoip_registration_code
   domain_name                 = "${var.active_directory_netbios_name}.dns.internal"
@@ -190,7 +190,7 @@ module "persona-2" {
   resource_group_name = azurerm_resource_group.vdi_resource_group.name
   azure_region        = azurerm_resource_group.vdi_resource_group.location
 
-  vm_name                     = local.vm_names[2]
+  vm_name                     = "VM${time_static.date_creation.unix}"
   base_name                   = var.base_name
   pcoip_registration_code     = var.pcoip_registration_code
   domain_name                 = "${var.active_directory_netbios_name}.dns.internal"
@@ -232,7 +232,7 @@ module "persona-3" {
   resource_group_name = azurerm_resource_group.vdi_resource_group.name
   azure_region        = azurerm_resource_group.vdi_resource_group.location
 
-  vm_name                     = local.vm_names[3]
+  vm_name                     = "VM${time_static.date_creation.unix}"
   base_name                   = var.base_name
   pcoip_registration_code     = var.pcoip_registration_code
   domain_name                 = "${var.active_directory_netbios_name}.dns.internal"
