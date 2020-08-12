@@ -24,7 +24,7 @@ For more details refer to: [Persona Details](https://github.com/AzEditorialWkGrp
 
 |Virtual Machine	|Central US	|East US	|East US 2	|North Central US	|South Central US	|West Central US	|West US	|West US 2	|North Europe	|West Europe	|UK South2	|UK West3	|France Central	|France South	|
 |---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
-|NV-series (Persona 1)	|No	|Yes	|Yes	|Yes	|Yes	|No	|Yes	|Yes	|Yes	|Yes	|Yes	|No	|No	|No	|
+|NV-series (Persona 1)	|No	|Yes	|Yes	|Yes	|Yes	|No	|No	|Yes	|Yes	|Yes	|Yes	|No	|No	|No	|
 |NVv3-series (Persona 2 or 3)	|No	|Yes	|Expected Q3 2020	|No	|Yes	|No	|Yes	|Yes	|Yes	|Yes	|Yes	|No	|Expected Q4 2020	|No	|
 
 
