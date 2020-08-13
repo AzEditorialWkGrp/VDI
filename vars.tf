@@ -190,11 +190,6 @@ variable "safe_mode_admin_password" {
   type        = string
 }
 
-variable "golden_image_id" {
-  description = "Id of the golden image in shared image gallery"
-  type        = string
-}
-
 variable "client_name" {
   description = "Client name for tags. User entry"
   type        = string
