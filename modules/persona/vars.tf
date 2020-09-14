@@ -178,4 +178,13 @@ variable "data_disk_name" {
   type = string
 }
 
+variable "vm_shutdown_time" {
+  type = string
+}
+
+variable "vm_shutdown_timezone" {
+  type = string
+}
+
+
 variable "vm_depends_on" {}

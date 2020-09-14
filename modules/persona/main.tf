@@ -76,8 +76,8 @@ resource "azurerm_template_deployment" "shutdown_schedule_template" {
     "location"                       = var.azure_region
     "virtualMachineName"             = element(azurerm_template_deployment.windows.*.parameters.vmName, count.index)
     "autoShutdownStatus"             = "Enabled"
-    "autoShutdownTime"               = "18:00"
-    "autoShutdownTimeZone"           = "Pacific Standard Time"
+    "autoShutdownTime"               = var.vm_shutdown_time
+    "autoShutdownTimeZone"           = var.vm_shutdown_timezone
     "autoShutdownNotificationStatus" = "Disabled"
     "autoShutdownNotificationLocale" = "en"
   }

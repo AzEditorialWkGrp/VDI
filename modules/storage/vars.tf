@@ -61,4 +61,5 @@ variable "tags" {
 
 locals {
   images_container_name = "vm-images"
+  today = timestamp()
 }

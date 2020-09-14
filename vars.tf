@@ -145,6 +145,16 @@ variable "vm_persona" {
   description = "Persona type of deploying VM"
 }
 
+variable "vm_shutdown_time" {
+  description = "The time to scheduled VM shutdown e.g. 18:00"
+  type = string
+}
+
+variable "vm_shutdown_timezone" {
+  description = "The timezone to scheduled VM shutdown e.g. Pacific Standard Time"
+  type = string
+}
+
 variable "key_vault_id" {
   description = "The key vault resource ID"
   type        = string
@@ -187,11 +197,6 @@ variable "cac_token_secret_id" {
 
 variable "safe_mode_admin_password" {
   description = "Safe Mode Admin Password (Directory Service Restore Mode - DSRM)"
-  type        = string
-}
-
-variable "client_name" {
-  description = "Client name for tags. User entry"
   type        = string
 }
 
@@ -252,7 +257,6 @@ locals {
   common_tags                = "${map(
     "Created Date", "${formatdate("MMM DD, YYYY", time_static.date_creation.id)}",
     "Environment", "${var.environment}",
-    "Client Name", "${var.client_name}",
     "Createdby", "Supportpartners"
   )}"
   vm_count                   = length(csvdecode(file("${path.root}/domain_users_list.csv")))

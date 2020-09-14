@@ -2,6 +2,17 @@ $owner = "AzEditorialWkGrp"
 $repo_name = "VDI"
 $branch = "master"
 
+$sysDrive = (Get-WmiObject Win32_OperatingSystem).SystemDrive
+$basePath = [IO.Path]::Combine("$sysDrive\", "Temp", "vdi", (Get-Date).ToString("yyyyMMdd_HHmmss"))
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$wc = New-Object System.Net.WebClient
+
+if ( -not (Test-Path -LiteralPath $basePath -PathType Container) ) {
+    New-Item -ItemType Directory -Path $basePath
+}
+
+
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $wc = New-Object System.Net.WebClient
 
@@ -48,9 +59,9 @@ Function AzureLogin
 Function DownloadProject
 {
     $uri = "https://github.com/$owner/$repo_name/archive/$branch.zip"
-    $zip = Join-Path $PSScriptRoot "$branch.zip"
+    $zip = Join-Path $basePath "$branch.zip"
     $wc.DownloadFile($uri, $zip)
-    Expand-Archive -Path $zip -DestinationPath $PSScriptRoot -Force
+    Expand-Archive -Path $zip -DestinationPath $basePath -Force
     Remove-Item -Path $zip
 }
 
@@ -171,12 +182,11 @@ diag_storage_name        = `"vdidemo`"
 ad_admin_username        = `"ADadmin`"
 cac_admin_username          = `"CACadmin`"
 windows_std_admin_username  = `"WINadmin`"
-vm_persona                  = 1
-client_name                 = `"Client`""
+vm_persona                  = 1"
 
 DownloadProject
 
-$repo_directory = Join-Path $PSScriptRoot "$repo_name-$branch"
+$repo_directory = Join-Path $basePath "$repo_name-$branch"
 pushd $repo_directory
 
 CreateUsers
@@ -192,3 +202,5 @@ DownloadTools($repo_directory)
 .\terraform.exe apply -var-file="$tfvars_file"
 
 popd
+
+Remove-Item -Recurse -Force $basePath

@@ -4,6 +4,8 @@ Click-to-deploy Terraform templates for the automated deployment of small scale 
 
 The easiest and fastest solution to start your VDI journey on Azure.
 
+![DeploymentOverview](Images/DeploymentOverview.png)
+
 ## Getting Started
 
 These instructions will help you deploy an Adobe Creative Cloud desktop infrastructure environments within Azure.  By providing a simple repeatable approach, teams can deliver Creative Cloud desktop infrastructure quickly and efficiently, tailored to defined personas in the creative industry.
