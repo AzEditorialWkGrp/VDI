@@ -13,7 +13,6 @@ if ( -not (Test-Path -LiteralPath $basePath -PathType Container) ) {
     New-Item -ItemType Directory -Path $basePath
 }
 
-
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $wc = New-Object System.Net.WebClient
 
