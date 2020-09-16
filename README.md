@@ -46,6 +46,54 @@ The script will deploy the following infrastructure in a self contained Azure Re
 
 There are a number of prerequisites you must have to successfully deploy this infrastructure
 
+**Pre-Requisites: Ensure you have enough vCPUs in your subscription to deploy the intended machines**
+
+The basic calculation for the number of cores is **VM Type** x **Number of VMs**
+
+The VM types are:
+
+Persona 1 - NV Series **6 vCPUs**
+
+Persona 2 - NVSv3 Series **12 vCPUs**
+
+Persona 3 - NVSv3 Series **24 vCPUs**
+
+For example if you deploy 2 x Persona 1 workstations you will need to ensure you have at least **12 NV vCPUs** available in the subscription.
+For 1 x Persona 3 workstations you will need **24 NVSv3 vCPUs**.
+
+**Note: ensure you have the correct VM Type selected, NV and NVv3 are different VM types. vCPU quotas are also defined on a per region basis.**
+
+To check what vCPUs are available, 
+
+* Log into the Azure portal and choose the subscription where you intend to deploy
+* Select Usage + Quotas
+* Under services choose the VM Type, in the example below we have selected **Standard NV Family vCPU**
+* Under providers choose **Microsoft.Compute**
+* Choose the location you intend to deploy
+
+You should now be presented with a list with your filtered criteria where the number of cores in use/available are shown on the right of the window.
+
+
+![ViewvCPUs](Images/UsageQuotasViewvCPUs.png)
+
+If you do not have enough vCPUs available then you can request an increase to your quota:
+
+* Click **Request Increase** in the top right
+* Ensure you select the issue type **Service and subscription limits (quotas)**
+* Ensure you select your desired subscription
+* Ensure you select the Quota type **Compute-VM (cores-vCPUs) subscription limit increase**
+* On the Details page, click **Enter Details** in the Request Details section
+* Choose **Resource Manager**
+* Choose the location you intend to deploy
+* Choose type **Standard**
+* Choose the core type you require, in our example we have chosen the NV Series
+* Enter the **New vCPU Limit**, in our example we are requesting an increase from 12 to 24
+
+![RequestvCPUs](Images/UsageQuotasRequestvCPUs.png)
+
+Once you have filled out your contact information you can review and create to submit your request.
+
+
 **Pre-requisites: Azure permissions**
 
 The account used to run the script will require necessary permissions within Azure prior to running the scripts
