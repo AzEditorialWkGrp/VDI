@@ -1,3 +1,40 @@
+ Local .terraform directories
+**/.terraform/*
 
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Ignore any .tfvars files that are generated automatically for each Terraform run. Most
+# .tfvars files are managed as part of configuration and so should be included in
+# version control.
+#
+# example.tfvars
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+#
+# !example_override.tf
+
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+*.zip
+/modules/dc/files/gpo/users/SOE - Azure File Share/{6C84A158-775A-4E11-8D4D-B3BDEE20D9C0}/DomainSysvol/GPO/User/Scripts/Logon/AzureFileShareMap.ps1
+/terraform.d/
+/modules/persona/wait-for-images.ps1
+/modules/dc/files/gpo/users/SOE - File Share Mount & Adobe Preferences Copy/DomainSysvol/GPO/User/Scripts/Logon/AzureFileShareMap_AdobePremierePreferences.ps1
+/modules/dc/files/gpo/users/SOE - Mount File Share & Copy Premiere Preferences/{23E4BC53-81E7-4A6F-9E82-3B1BF6A8F33E}/DomainSysvol/GPO/User/Scripts/Logon/AzureFileShareMap_AdobePremierePreferences.ps1
 .DS_Store
-modules/.DS_Store

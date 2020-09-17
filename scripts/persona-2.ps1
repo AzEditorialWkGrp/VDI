@@ -1,6 +1,6 @@
 $owner = "AzEditorialWkGrp"
 $repo_name = "VDI"
-$branch = "master"
+$branch = "4.1"
 
 
 $sysDrive = (Get-WmiObject Win32_OperatingSystem).SystemDrive
