@@ -1,6 +1,6 @@
 $owner = "AzEditorialWkGrp"
 $repo_name = "VDI"
-$branch = "4.1"
+$branch = "4.2"
 
 $sysDrive = (Get-WmiObject Win32_OperatingSystem).SystemDrive
 $basePath = [IO.Path]::Combine("$sysDrive\", "Temp", "vdi", (Get-Date).ToString("yyyyMMdd_HHmmss"))

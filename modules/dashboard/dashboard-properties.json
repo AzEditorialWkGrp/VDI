@@ -1,0 +1,1373 @@
+{
+  "lenses": {
+    "0": {
+      "order": 0,
+      "parts": {
+        "0": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "scope",
+                "value": "${resource_group_id}"
+              },
+              {
+                "name": "scopeName",
+                "value": "${resource_group_name}"
+              },
+              {
+                "name": "view",
+                "value": {
+                  "currency": "USD",
+                  "dateRange": "CurrentBillingPeriod",
+                  "query": {
+                    "type": "ActualCost",
+                    "dataSet": {
+                      "granularity": "None",
+                      "aggregation": {
+                        "totalCost": {
+                          "name": "Cost",
+                          "function": "Sum"
+                        },
+                        "totalCostUSD": {
+                          "name": "CostUSD",
+                          "function": "Sum"
+                        }
+                      },
+                      "grouping": [
+                        {
+                          "type": "Dimension",
+                          "name": "ResourceLocation"
+                        }
+                      ],
+                      "filter": {
+                        "And": [
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "timeframe": "None"
+                  },
+                  "chart": "GroupedColumn",
+                  "accumulated": "false",
+                  "pivots": [
+                    {
+                      "type": "Dimension",
+                      "name": "ServiceName"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceLocation"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceId"
+                    }
+                  ],
+                  "scope": "${resource_group_id}",
+                  "kpis": [
+                    {
+                      "type": "Budget",
+                      "id": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE",
+                      "enabled": true,
+                      "extendedProperties": {
+                        "name": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE"
+                      }
+                    },
+                    {
+                      "type": "Forecast",
+                      "enabled": true
+                    }
+                  ],
+                  "displayName": "Demo Cost Per Region"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "externalState",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_Azure_CostManagement/PartType/CostAnalysisPinPart",
+            "deepLink": "#blade/Microsoft_Azure_CostManagement/Menu/costanalysis/scope/%2Fsubscriptions%2F3cf94f2e-060e-4d4d-8b48-bf0d3d45fb32/open/CostAnalysis/view/%7B%22currency%22%3A%22GBP%22%2C%22dateRange%22%3A%22CurrentBillingPeriod%22%2C%22query%22%3A%7B%22type%22%3A%22ActualCost%22%2C%22dataSet%22%3A%7B%22granularity%22%3A%22None%22%2C%22aggregation%22%3A%7B%22totalCost%22%3A%7B%22name%22%3A%22Cost%22%2C%22function%22%3A%22Sum%22%7D%2C%22totalCostUSD%22%3A%7B%22name%22%3A%22CostUSD%22%2C%22function%22%3A%22Sum%22%7D%7D%2C%22grouping%22%3A%5B%7B%22type%22%3A%22Dimension%22%2C%22name%22%3A%22ResourceLocation%22%7D%5D%2C%22filter%22%3A%7B%22And%22%3A%5B%7B%22Dimensions%22%3A%7B%22Name%22%3A%22PublisherType%22%2C%22Operator%22%3A%22In%22%2C%22Values%22%3A%5B%22azure%22%5D%7D%7D%2C%7B%22Dimensions%22%3A%7B%22Name%22%3A%22PublisherType%22%2C%22Operator%22%3A%22In%22%2C%22Values%22%3A%5B%22azure%22%5D%7D%7D%5D%7D%7D%2C%22timeframe%22%3A%22None%22%7D%2C%22chart%22%3A%22GroupedColumn%22%2C%22accumulated%22%3A%22false%22%2C%22pivots%22%3A%5B%7B%22type%22%3A%22Dimension%22%2C%22name%22%3A%22ServiceName%22%7D%2C%7B%22type%22%3A%22Dimension%22%2C%22name%22%3A%22ResourceLocation%22%7D%2C%7B%22type%22%3A%22Dimension%22%2C%22name%22%3A%22ResourceGroupName%22%7D%5D%2C%22scope%22%3A%22subscriptions%2F3cf94f2e-060e-4d4d-8b48-bf0d3d45fb32%22%2C%22kpis%22%3A%5B%7B%22type%22%3A%22Budget%22%2C%22id%22%3A%22%2Fsubscriptions%2F3cf94f2e-060e-4d4d-8b48-bf0d3d45fb32%2Fproviders%2FMicrosoft.Consumption%2Fbudgets%2FMaster_budget%22%2C%22enabled%22%3Atrue%2C%22extendedProperties%22%3A%7B%22name%22%3A%22Master_budget%22%2C%22amount%22%3A500%2C%22timeGrain%22%3A%22BillingMonth%22%2C%22type%22%3A%223cf94f2e-060e-4d4d-8b48-bf0d3d45fb32%22%7D%7D%2C%7B%22type%22%3A%22Forecast%22%2C%22enabled%22%3Atrue%7D%5D%2C%22displayName%22%3A%22Demo%20Cost%20Per%20Region%22%7D"
+          }
+        },
+        "1": {
+          "position": {
+            "x": 6,
+            "y": 0,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "scope",
+                "value": "${resource_group_id}"
+              },
+              {
+                "name": "scopeName",
+                "value": "${resource_group_name}"
+              },
+              {
+                "name": "view",
+                "value": {
+                  "currency": "USD",
+                  "dateRange": "CurrentBillingPeriod",
+                  "query": {
+                    "type": "ActualCost",
+                    "dataSet": {
+                      "granularity": "None",
+                      "aggregation": {
+                        "totalCost": {
+                          "name": "Cost",
+                          "function": "Sum"
+                        },
+                        "totalCostUSD": {
+                          "name": "CostUSD",
+                          "function": "Sum"
+                        }
+                      },
+                      "grouping": [
+                        {
+                          "type": "Dimension",
+                          "name": "MeterSubCategory"
+                        }
+                      ],
+                      "filter": {
+                        "And": [
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "ResourceType",
+                              "Operator": "In",
+                              "Values": [
+                                "microsoft.compute/virtualmachines"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "ServiceName",
+                              "Operator": "In",
+                              "Values": [
+                                "virtual machines"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "timeframe": "None"
+                  },
+                  "chart": "GroupedColumn",
+                  "accumulated": "false",
+                  "pivots": [
+                    {
+                      "type": "Dimension",
+                      "name": "ServiceName"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceLocation"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceId"
+                    }
+                  ],
+                  "scope": "${resource_group_id}",
+                  "kpis": [
+                    {
+                      "type": "Budget",
+                      "id": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE",
+                      "enabled": true,
+                      "extendedProperties": {
+                        "name": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE"
+                      }
+                    },
+                    {
+                      "type": "Forecast",
+                      "enabled": true
+                    }
+                  ],
+                  "displayName": "Demo Costs Per Machine Type"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "externalState",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_Azure_CostManagement/PartType/CostAnalysisPinPart",
+            "deepLink": ""
+          }
+        },
+        "2": {
+          "position": {
+            "x": 12,
+            "y": 0,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "scope",
+                "value": "${resource_group_id}"
+              },
+              {
+                "name": "scopeName",
+                "value": "${resource_group_name}"
+              },
+              {
+                "name": "view",
+                "value": {
+                  "currency": "USD",
+                  "dateRange": "CurrentBillingPeriod",
+                  "query": {
+                    "type": "ActualCost",
+                    "dataSet": {
+                      "granularity": "Daily",
+                      "aggregation": {
+                        "totalCost": {
+                          "name": "Cost",
+                          "function": "Sum"
+                        },
+                        "totalCostUSD": {
+                          "name": "CostUSD",
+                          "function": "Sum"
+                        }
+                      },
+                      "sorting": [
+                        {
+                          "direction": "ascending",
+                          "name": "UsageDate"
+                        }
+                      ],
+                      "grouping": [
+                        {
+                          "type": "Dimension",
+                          "name": "ResourceGroupName"
+                        }
+                      ],
+                      "filter": {
+                        "And": [
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "timeframe": "None"
+                  },
+                  "chart": "GroupedColumn",
+                  "accumulated": "true",
+                  "pivots": [
+                    {
+                      "type": "Dimension",
+                      "name": "ServiceName"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceLocation"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceId"
+                    }
+                  ],
+                  "scope": "${resource_group_id}",
+                  "kpis": [
+                    {
+                      "type": "Budget",
+                      "id": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE",
+                      "enabled": true,
+                      "extendedProperties": {
+                        "name": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE"
+                      }
+                    },
+                    {
+                      "type": "Forecast",
+                      "enabled": true
+                    }
+                  ],
+                  "displayName": "Demo Resource Group Cost"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "externalState",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_Azure_CostManagement/PartType/CostAnalysisPinPart",
+            "deepLink": ""
+          }
+        },
+        "3": {
+          "position": {
+            "x": 0,
+            "y": 4,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "scope",
+                "value": "${resource_group_id}"
+              },
+              {
+                "name": "scopeName",
+                "value": "${resource_group_name}"
+              },
+              {
+                "name": "view",
+                "value": {
+                  "currency": "USD",
+                  "dateRange": "CurrentBillingPeriod",
+                  "query": {
+                    "type": "ActualCost",
+                    "dataSet": {
+                      "granularity": "Daily",
+                      "aggregation": {
+                        "totalCost": {
+                          "name": "Cost",
+                          "function": "Sum"
+                        },
+                        "totalCostUSD": {
+                          "name": "CostUSD",
+                          "function": "Sum"
+                        }
+                      },
+                      "sorting": [
+                        {
+                          "direction": "ascending",
+                          "name": "UsageDate"
+                        }
+                      ],
+                      "filter": {
+                        "And": [
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "ServiceName",
+                              "Operator": "In",
+                              "Values": [
+                                "bandwidth"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "timeframe": "None"
+                  },
+                  "chart": "Area",
+                  "accumulated": "true",
+                  "pivots": [
+                    {
+                      "type": "Dimension",
+                      "name": "ServiceName"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceLocation"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceId"
+                    }
+                  ],
+                  "scope": "${resource_group_id}",
+                  "kpis": [
+                    {
+                      "type": "Budget",
+                      "id": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE",
+                      "enabled": true,
+                      "extendedProperties": {
+                        "name": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE"
+                      }
+                    },
+                    {
+                      "type": "Forecast",
+                      "enabled": true
+                    }
+                  ],
+                  "displayName": "Demo Network Out Billable"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "externalState",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_Azure_CostManagement/PartType/CostAnalysisPinPart",
+            "deepLink": "#blade/Microsoft_Azure_CostManagement/Menu/costanalysis"
+          }
+        },
+        "4": {
+          "position": {
+            "x": 6,
+            "y": 4,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "scope",
+                "value": "${resource_group_id}"
+              },
+              {
+                "name": "scopeName",
+                "value": "${resource_group_name}"
+              },
+              {
+                "name": "view",
+                "value": {
+                  "currency": "USD",
+                  "dateRange": "CurrentBillingPeriod",
+                  "query": {
+                    "type": "ActualCost",
+                    "dataSet": {
+                      "granularity": "Daily",
+                      "aggregation": {
+                        "totalCost": {
+                          "name": "Cost",
+                          "function": "Sum"
+                        },
+                        "totalCostUSD": {
+                          "name": "CostUSD",
+                          "function": "Sum"
+                        }
+                      },
+                      "sorting": [
+                        {
+                          "direction": "ascending",
+                          "name": "UsageDate"
+                        }
+                      ],
+                      "filter": {
+                        "And": [
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "PublisherType",
+                              "Operator": "In",
+                              "Values": [
+                                "azure"
+                              ]
+                            }
+                          },
+                          {
+                            "Dimensions": {
+                              "Name": "ResourceId",
+                              "Operator": "In",
+                              "Values": [
+                                "${storage_account_id}"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "timeframe": "None"
+                  },
+                  "chart": "Area",
+                  "accumulated": "true",
+                  "pivots": [
+                    {
+                      "type": "Dimension",
+                      "name": "ServiceName"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceLocation"
+                    },
+                    {
+                      "type": "Dimension",
+                      "name": "ResourceId"
+                    }
+                  ],
+                  "scope": "${resource_group_id}",
+                  "kpis": [
+                    {
+                      "type": "Budget",
+                      "id": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE",
+                      "enabled": true,
+                      "extendedProperties": {
+                        "name": "COST_NAVIGATOR.BUDGET_OPTIONS.NONE"
+                      }
+                    },
+                    {
+                      "type": "Forecast",
+                      "enabled": true
+                    }
+                  ],
+                  "displayName": "Demo Files Share Costs"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "externalState",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_Azure_CostManagement/PartType/CostAnalysisPinPart",
+            "deepLink": "#blade/Microsoft_Azure_CostManagement/Menu/costanalysis"
+          }
+        },
+        "5": {
+          "position": {
+            "x": 0,
+            "y": 8,
+            "colSpan": 12,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "region": "${location}",
+                          "resourceType": "microsoft.compute/virtualmachines",
+                          "subscription": {
+                            "subscriptionId": "${subscription_id}",
+                            "displayName": "${subscription_display_name}",
+                            "uniqueDisplayName": "${subscription_display_name}"
+                          }
+                        },
+                        "name": "Percentage CPU",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.compute/virtualmachines",
+                        "metricVisualization": {
+                          "displayName": "Percentage CPU",
+                          "resourceDisplayName": "${subscription_display_name}"
+                        }
+                      }
+                    ],
+                    "title": "Demo Percentage CPU Usage",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "filterCollection": {
+                      "filters": [
+                        {
+                          "key": "Microsoft.ResourceGroupName",
+                          "operator": 0,
+                          "values": [
+                            "${resource_group_name}"
+                          ]
+                        }
+                      ]
+                    },
+                    "grouping": {
+                      "dimension": "Microsoft.ResourceId"
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 604800000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "region": "${location}",
+                          "resourceType": "microsoft.compute/virtualmachines",
+                          "subscription": {
+                            "subscriptionId": "${subscription_id}",
+                            "displayName": "${subscription_display_name}",
+                            "uniqueDisplayName": "${subscription_display_name}"
+                          }
+                        },
+                        "name": "Percentage CPU",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.compute/virtualmachines",
+                        "metricVisualization": {
+                          "displayName": "Percentage CPU",
+                          "resourceDisplayName": "${subscription_display_name}"
+                        }
+                      }
+                    ],
+                    "title": "Demo Percentage CPU Usage",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    },
+                    "grouping": {
+                      "dimension": "Microsoft.ResourceId"
+                    }
+                  }
+                }
+              }
+            },
+            "filters": {
+              "Microsoft.ResourceGroupName": {
+                "model": {
+                  "operator": "equals",
+                  "values": [
+                    "${resource_group_name}"
+                  ]
+                }
+              },
+              "MsPortalFx_TimeRange": {
+                "model": {
+                  "format": "local",
+                  "granularity": "auto",
+                  "relative": "10080m"
+                }
+              }
+            }
+          }
+        },
+        "6": {
+          "position": {
+            "x": 12,
+            "y": 8,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "region": "${location}",
+                          "resourceType": "microsoft.compute/virtualmachines",
+                          "subscription": {
+                            "subscriptionId": "${subscription_id}",
+                            "displayName": "${subscription_display_name}",
+                            "uniqueDisplayName": "${subscription_display_name}"
+                          },
+                          "${subscription_id}": {
+                            "subscriptionId": "${subscription_id}",
+                            "subscriptionDisplayName": "${subscription_display_name}",
+                            "location": "${location}",
+                            "locationDisplayName": "${location}",
+                            "resourceType": "microsoft.compute/virtualmachines",
+                            "resourceTypeDisplayName": "Virtual machines"
+                          }
+                        },
+                        "name": "Network In Total",
+                        "aggregationType": 1,
+                        "namespace": "microsoft.compute/virtualmachines",
+                        "metricVisualization": {
+                          "displayName": "Network In Total",
+                          "resourceDisplayName": "${subscription_display_name}"
+                        }
+                      }
+                    ],
+                    "title": "Demo Network Usage",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "filterCollection": {
+                      "filters": [
+                        {
+                          "key": "Microsoft.ResourceGroupName",
+                          "operator": 0,
+                          "values": [
+                            "${resource_group_name}"
+                          ]
+                        }
+                      ]
+                    },
+                    "grouping": {
+                      "dimension": "Microsoft.ResourceId"
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 604800000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "region": "${location}",
+                          "resourceType": "microsoft.compute/virtualmachines",
+                          "subscription": {
+                            "subscriptionId": "${subscription_id}",
+                            "displayName": "${subscription_display_name}",
+                            "uniqueDisplayName": "${subscription_display_name}"
+                          },
+                          "${subscription_id}": {
+                            "subscriptionId": "${subscription_id}",
+                            "subscriptionDisplayName": "${subscription_display_name}",
+                            "location": "${location}",
+                            "locationDisplayName": "UK South",
+                            "resourceType": "microsoft.compute/virtualmachines",
+                            "resourceTypeDisplayName": "Virtual machines"
+                          }
+                        },
+                        "name": "Network In Total",
+                        "aggregationType": 1,
+                        "namespace": "microsoft.compute/virtualmachines",
+                        "metricVisualization": {
+                          "displayName": "Network In Total",
+                          "resourceDisplayName": "${subscription_display_name}"
+                        }
+                      }
+                    ],
+                    "title": "Demo Network Usage",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    },
+                    "grouping": {
+                      "dimension": "Microsoft.ResourceId"
+                    }
+                  }
+                }
+              }
+            },
+            "filters": {
+              "Microsoft.ResourceGroupName": {
+                "model": {
+                  "operator": "equals",
+                  "values": [
+                    "${resource_group_name}"
+                  ]
+                }
+              },
+              "MsPortalFx_TimeRange": {
+                "model": {
+                  "format": "local",
+                  "granularity": "auto",
+                  "relative": "10080m"
+                }
+              }
+            }
+          }
+        },
+        "7": {
+          "position": {
+            "x": 0,
+            "y": 12,
+            "colSpan": 12,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "region": "${location}",
+                          "resourceType": "microsoft.compute/virtualmachines",
+                          "subscription": {
+                            "subscriptionId": "${subscription_id}",
+                            "displayName": "${subscription_display_name}",
+                            "uniqueDisplayName": "${subscription_display_name}"
+                          },
+                          "${subscription_id}": {
+                            "subscriptionId": "${subscription_id}",
+                            "subscriptionDisplayName": "${subscription_display_name}",
+                            "location": "${location}",
+                            "locationDisplayName": "UK South",
+                            "resourceType": "microsoft.compute/virtualmachines",
+                            "resourceTypeDisplayName": "Virtual machines"
+                          }
+                        },
+                        "name": "Data Disk Read Operations/Sec",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.compute/virtualmachines",
+                        "metricVisualization": {
+                          "displayName": "Data Disk Read Operations/Sec (Preview)",
+                          "resourceDisplayName": "${subscription_display_name}"
+                        }
+                      }
+                    ],
+                    "title": "Demo Disk Operations/sec (Average)",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "filterCollection": {
+                      "filters": [
+                        {
+                          "key": "Microsoft.ResourceGroupName",
+                          "operator": 0,
+                          "values": [
+                            "${resource_group_name}"
+                          ]
+                        }
+                      ]
+                    },
+                    "grouping": {
+                      "dimension": "Microsoft.ResourceId"
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 604800000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "region": "${location}",
+                          "resourceType": "microsoft.compute/virtualmachines",
+                          "subscription": {
+                            "subscriptionId": "${subscription_id}",
+                            "displayName": "${subscription_display_name}",
+                            "uniqueDisplayName": "${subscription_display_name}"
+                          },
+                          "${subscription_id}": {
+                            "subscriptionId": "${subscription_id}",
+                            "subscriptionDisplayName": "${subscription_display_name}",
+                            "location": "${location}",
+                            "locationDisplayName": "UK South",
+                            "resourceType": "microsoft.compute/virtualmachines",
+                            "resourceTypeDisplayName": "Virtual machines"
+                          }
+                        },
+                        "name": "Data Disk Read Operations/Sec",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.compute/virtualmachines",
+                        "metricVisualization": {
+                          "displayName": "Data Disk Read Operations/Sec (Preview)",
+                          "resourceDisplayName": "${subscription_display_name}"
+                        }
+                      }
+                    ],
+                    "title": "Demo Disk Operations/sec (Average)",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    },
+                    "grouping": {
+                      "dimension": "Microsoft.ResourceId"
+                    }
+                  }
+                }
+              }
+            },
+            "filters": {
+              "Microsoft.ResourceGroupName": {
+                "model": {
+                  "operator": "equals",
+                  "values": [
+                    "${resource_group_name}"
+                  ]
+                }
+              },
+              "MsPortalFx_TimeRange": {
+                "model": {
+                  "format": "local",
+                  "granularity": "auto",
+                  "relative": "10080m"
+                }
+              }
+            }
+          }
+        },
+        "8": {
+          "position": {
+            "x": 12,
+            "y": 12,
+            "colSpan": 6,
+            "rowSpan": 4
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "${storage_account_id}"
+                        },
+                        "name": "UsedCapacity",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.storage/storageaccounts",
+                        "metricVisualization": {
+                          "displayName": "Used capacity"
+                        }
+                      }
+                    ],
+                    "title": "Demo Average Used capacity for ${storage_account_name}",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 604800000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              },
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "${storage_account_id}"
+                        },
+                        "name": "UsedCapacity",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.storage/storageaccounts",
+                        "metricVisualization": {
+                          "displayName": "Used capacity"
+                        }
+                      }
+                    ],
+                    "title": "Demo Average Used capacity for ${storage_account_name}",
+                    "titleKind": 2,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    }
+                  }
+                }
+              }
+            },
+            "filters": {
+              "MsPortalFx_TimeRange": {
+                "model": {
+                  "format": "local",
+                  "granularity": "auto",
+                  "relative": "10080m"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "model": {
+      "timeRange": {
+        "value": {
+          "relative": {
+            "duration": 24,
+            "timeUnit": 1
+          }
+        },
+        "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+      },
+      "filterLocale": {
+        "value": "en-us"
+      },
+      "filters": {
+        "value": {
+          "MsPortalFx_TimeRange": {
+            "model": {
+              "format": "utc",
+              "granularity": "auto",
+              "relative": "24h"
+            },
+            "displayCache": {
+              "name": "UTC Time",
+              "value": "Past 24 hours"
+            },
+            "filteredPartIds": [
+              "StartboardPart-MonitorChartPart-1d615d83-e25c-4024-b574-b8f98575a415",
+              "StartboardPart-MonitorChartPart-1d615d83-e25c-4024-b574-b8f98575a417",
+              "StartboardPart-MonitorChartPart-1d615d83-e25c-4024-b574-b8f98575a419",
+              "StartboardPart-MonitorChartPart-1d615d83-e25c-4024-b574-b8f98575a41b"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

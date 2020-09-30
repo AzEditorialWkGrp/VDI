@@ -38,3 +38,6 @@ terraform.rc
 /modules/dc/files/gpo/users/SOE - File Share Mount & Adobe Preferences Copy/DomainSysvol/GPO/User/Scripts/Logon/AzureFileShareMap_AdobePremierePreferences.ps1
 /modules/dc/files/gpo/users/SOE - Mount File Share & Copy Premiere Preferences/{23E4BC53-81E7-4A6F-9E82-3B1BF6A8F33E}/DomainSysvol/GPO/User/Scripts/Logon/AzureFileShareMap_AdobePremierePreferences.ps1
 .DS_Store
+/azcopy.exe
+/domain_users_list.csv
+/user-vars.tfvars

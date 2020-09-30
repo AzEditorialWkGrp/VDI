@@ -274,6 +274,22 @@ module "persona-3" {
   vm_depends_on               = module.cac.cac_created
 }
 
+module "dashboard" {
+  source = "./modules/dashboard"
+
+  resource_group_id          = azurerm_resource_group.vdi_resource_group.id
+  resource_group_name        = azurerm_resource_group.vdi_resource_group.name
+  location                   = var.common_location
+
+  storage_account_id         = module.storage.storage_account_id
+  storage_account_name       = module.storage.storage_account
+
+  subscription_id            = data.azurerm_subscription.current.subscription_id
+  subscription_display_name  = data.azurerm_subscription.current.display_name
+
+  tags                       = local.common_tags
+}
+
 output "cac_ip_address" {
   value = module.network.cac_public_ip
 }
