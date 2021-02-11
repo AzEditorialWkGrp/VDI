@@ -55,7 +55,7 @@ resource "azurerm_template_deployment" "windows" {
     "_artifactsLocation"          = "${var._artifactsLocation}"
     "_artifactsLocationSasToken"  = "${var._artifactsLocationSasToken}"
     image_id                      = azurerm_image.workstation.id
-    "pcoip_agent_exe"             = "pcoip-agent-graphics_20.07.0.exe"
+    "pcoip_agent_exe"             = "pcoip-agent-graphics_21.01.2.exe"
     "vmTags"                      = "${jsonencode(merge(var.tags, map(
         "Type", "workstation",
         "OS", "Windows10",

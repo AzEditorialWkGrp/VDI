@@ -1,3 +1,3 @@
-location                      = "northeurope"
-resource_group_name           = "SP-VDI-graph"
-storage_account_name          = "stteradicisa"
+location                      = "eastus"
+resource_group_name           = "rg-msoft-vdidemo-prod"
+storage_account_name          = "stteradiciprodusa"

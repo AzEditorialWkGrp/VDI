@@ -5,14 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-resource "azurerm_resource_group" "script" {
-  location = var.location
-  name     = "${var.resource_group_name}"
+data "azurerm_resource_group" "script" {
+  name = var.resource_group_name
 }
 
 resource "azurerm_storage_account" "script" {
   name                     = var.storage_account_name
-  resource_group_name      = azurerm_resource_group.script.name
+  resource_group_name      = data.azurerm_resource_group.script.name
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
@@ -62,11 +61,11 @@ resource "azurerm_storage_blob" "windows-std-script" {
 
 resource "azurerm_storage_blob" "pcoip-agent" {
   depends_on             = [azurerm_storage_container.script]
-  name                   = "pcoip-agent-standard_19.11.0.exe"
+  name                   = "pcoip-agent-graphics_21.01.2.exe"
   storage_account_name   = azurerm_storage_account.script.name
   storage_container_name = azurerm_storage_container.script.name
   type                   = "Block"
-  source                 = "${path.module}/pcoip-agent-standard_19.11.0.exe" 
+  source                 = "${path.module}/pcoip-agent-graphics_21.01.2.exe"
 }
 
 resource "azurerm_storage_blob" "background-img" {
