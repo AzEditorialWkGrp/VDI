@@ -7,6 +7,7 @@
 
 AD_SERVICE_ACCOUNT_PASSWORD=${ad_service_account_password}
 CAC_TOKEN=${cac_token}
+CAC_BIN_PATH="/usr/sbin/cloud-access-connector"
 PCOIP_REGISTRATION_CODE=${pcoip_registration_code}
 INSTALL_DIR="/root"
 INSTALL_LOG="/root/cac-install.log"
@@ -96,7 +97,7 @@ log "Downloading the CAC Installer..."
 
 # download CAC installer
 sudo curl -L ${cac_installer_url} -o $INSTALL_DIR/cloud-access-connector.tar.gz
-sudo tar xzvf $INSTALL_DIR/cloud-access-connector.tar.gz
+sudo tar xzvf $INSTALL_DIR/cloud-access-connector.tar.gz --no-same-owner -C /
 
 
 # Wait for service account to be added
@@ -178,7 +179,7 @@ if [ -z "${ssl_key}" ]; then
     log "### Not installing ssl certificate ###"
     while true
     do
-        ./cloud-access-connector install \
+        $CAC_BIN_PATH install \
             -t $CAC_TOKEN \
             --accept-policies \
             --insecure \
